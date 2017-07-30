@@ -1,0 +1,102 @@
+/* 右边定位icon */
+.wl_icon{
+    position:absolute;
+    top:90px;
+    right:20px;
+    width: 37px;
+    height: 156px;
+    background:#fff;
+    border-radius:18px;
+    box-shadow:2px 2px 5px #ccc,-2px -2px 5px #ccc;
+}
+.wl_icon li{
+    -webkit-user-select:none;
+}
+.wl_icon .app{
+    width:37px;
+    height:60px;
+    position:relative;
+}
+.wl_icon .app a{
+    float:left;
+    width:37px;
+    height:60px;
+}
+.wl_icon .app a .iconImg{
+    width:21px;
+    height:21px;
+    margin: 25px 8px 0;
+}
+.wl_pop{
+    position: absolute;
+    left: -170px;
+    text-align: center;
+    width: 140px;
+    height: 160px;
+    background:#eee;
+    animation: floaterapp .3s ease;
+    transform-origin: right bottom;
+    display:none;
+}
+.app:hover .wl_pop{
+    display:block;
+    top:-104px;
+}
+.weixin:hover .wl_pop{
+    display:block;
+    top:0;
+}
+@keyframes floaterapp {
+    0% {
+        transform: scale(.8);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+.pop_in{
+    padding-top: 15px;
+    text-align: center;
+    width:100%;
+}
+.pop_in img{
+    width: 116px;
+    height: 116px;
+}
+.pop_in strong{
+    font-weight: 400;
+    color: #888f9b;
+    font-size: 14px;
+    margin-top: 5px;
+    display:block;
+}
+.weixin{
+    width:100%;
+    height:45px;
+    padding: 10px 8px 5px;
+}
+.weixin a{
+    float:left;
+    width:100%;
+    height:45px;
+}
+.weixin a .iconImg{
+    width: 23px;
+    height: 20px;
+}
+
+.top{
+    height:42px;
+    border-top:1px solid #ccc;
+    box-sizing:border-box;
+}
+.top>a{
+    float:left;
+    width:42px;
+    height:37px;
+    padding-top:3px;
+    text-align:center;
+    line-height:100%;
+    font-size:30px;
+    transform:rotate(90deg);
+}

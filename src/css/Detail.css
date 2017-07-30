@@ -1,0 +1,237 @@
+@import '~antd/dist/antd.css';
+.EnterprisePage{
+	width:100%;
+}
+.wrap{
+	width: 1200px;
+    margin: 0 auto;
+}
+.lunBox{
+	position:relative;
+	width:100%;
+}
+.spacer{
+	display: block;
+    height: 100vh;
+    width: 100%;
+    top: 0;
+}
+.enterTop{
+	position: fixed;
+	top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+    width:100%;
+    height: 100%;
+	background:url(../imgs/intro.jpg) no-repeat 50% 0;
+	background-size: cover;
+}
+.lunBox .ant-carousel{
+	position:relative;
+	left:0;
+	width:100%;
+	height:100%;
+}
+.lunBox .ant-carousel .slick-slide {
+  width:1200px;
+  text-align: center;
+  height: 100vh;
+  line-height:100vh;
+  position:relative;
+}
+.lunBox .ant-carousel .slick-dots{opacity:0;}
+.ant-carousel .slick-prev{
+	position: absolute;
+    left: -10px;
+    color:#fff;
+    z-index:3;
+    height:200px;
+     width:150px;
+     margin-top:-100px;
+}
+.lunBox .ant-carousel .slick-next {
+    right:-10px;
+     color:#fff;
+    z-index:3;
+    height:200px;
+    width:150px;
+    margin-top:-100px;
+} 
+.btnLeft{
+	position:absolute;
+	top:50%;
+	margin-top:-55px;
+	left:25px;
+	width:56px;
+	height:110px;
+	 z-index:3;
+	background:url(../imgs/jian_07.png) no-repeat;
+}
+.btnRight{
+	position:absolute;
+	right:25px;
+	top:50%;
+	margin-top:-55px;
+	background:url(../imgs/jian_03.png) no-repeat;
+	width:56px;
+	height:110px;
+	z-index:3;
+}
+/* 轮播里的内容 */
+.wl_messImg{
+	width:50%;
+	height:100%;
+	display:inline-block;
+	position:absolute;
+	left:0;
+}
+.wl_messFont{
+	width:50%;
+	height:100%;
+	position:absolute;
+	right:0;
+}
+.wl_imgBox{
+	width:256px;
+	margin:0 auto;
+	margin-top:65px;
+}
+.wl_img{
+	width:256px;
+	height:548px;	
+	background:url(../imgs/app2.png) no-repeat;
+	background-size:contain;
+	position:relative;
+	top:20px;
+}
+.wl_mod{
+	width: 226px;
+    height: 408px;
+    position:absolute;
+    overflow:hidden;
+    z-index: 2;
+    left: 7%;
+    top: 11%;
+}
+.wl_mod img{
+	width:100%;
+	z-index:10;
+}
+
+.wl_messFont .fadeinR{
+	font-size: 46px;
+	color:#fff;
+	height:50px;
+	position:absolute;
+	top:-110px;
+}
+.wl_messFont .font{
+	height:20px;
+	position:absolute;
+	left:0;
+	top:-50px; 
+	font-size:15px;
+	color:#fff;
+}
+.bgImg{
+	width:91px;
+	height:91px;
+	padding:10px;
+	background:#fff;
+	border-radius:5px;
+	background:url(../imgs/qrcode1.png) no-repeat;
+	position:absolute;
+	background-size:cover;
+	top:320px;
+}
+.bgFont{
+	position:absolute;
+	top:100px;
+	font-size:15px;
+	color:#fff;
+}
+.ant-carousel .wl_two img{
+	display:block;
+}
+.ant-carousel .bigImg{
+	width: 319px;
+    height: 550px;
+    background:url(../imgs/45.png) no-repeat;
+	background-size:contain;
+	position:relative;
+	top:20px;
+}
+
+.enterBtn{
+	width:100%;
+	height:100%;
+	background:#fff;
+	position: relative;
+}
+/* 第二部分 */
+.hd{
+	width:100%;
+	text-align:center;
+	color: #295ea8;
+    font-size: 36px;
+    padding: 100px 0 20px;
+}
+.wl_list li{
+	text-align:center;
+	color: #747b88;
+    font-size: 18px;
+    line-height: 32px;
+}
+.ft{
+	width:100%;
+	padding: 30px 0 140px;
+}
+.wl_con{
+	width:100%;
+}
+.wl_con li{
+	float: left;
+    width: 300px;
+    text-align:center;
+}
+.con-wrap{
+	height:250px;
+	padding-top:57px;
+}
+.con-wrap img{
+	width:100%;
+}
+.wl_con li h2{
+	color: #295ea8;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+.wl_con li p{
+	color: #747b88;
+    font-size: 18px;
+}
+.wl_for{
+	width:100%;
+	height:48px;
+	text-align:center;
+	margin-top:60px;
+}
+
+.grayBg{
+	position:relative;
+	height:98px;
+	width:100%;
+	background: #f9f9f9;
+	z-index:3;
+	border-top: 1px solid #e4e4e4;
+}
+.fontSize{
+	width:1140px;
+	padding: 0 30px;
+	line-height:98px;	
+}
+.fontSize .why{
+	color: #9298a3;
+}

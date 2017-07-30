@@ -1,0 +1,377 @@
+/* 首页开始 */
+@import '~antd/dist/antd.css';
+
+.wl_home{
+	position: fixed!important;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+    height: 100vh;
+    background: url(../imgs/intro-35fd714069.jpg) no-repeat 50% 0;
+    background-size: cover;
+    text-align: center;
+    transform-origin: 50% 50%;
+    will-change: transform;
+    animation: 2s scaleIn cubic-bezier(.215,.61,.355,1) 1;
+    transition: all .5s;
+}
+@keyframes scaleIn {
+	0% {
+    	transform: scale(1.1);
+	}
+	100% {
+	    transform: scale(1);
+	}
+}
+.modPage{
+	    min-width: 1200px;
+}
+.modBand{
+	width: 100%;
+    height: 100%;
+    display: table;
+    table-layout: fixed;
+    position: relative;
+    transition: height .3s ease-in-out;
+}
+.wl_boxed{
+	height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    color: #fff;
+}
+.wl_vertical{
+	width: 100%;
+    height: 100%;
+}
+.wl_align{
+    width: 100%;
+    height: 100%;
+    vertical-align: middle;
+}
+/* left 部分 */
+.wl_align .wl_left{
+	width: 50%;
+    text-align: center;
+}
+.wl_title{
+	font-size: 46px;
+	margin-top: 180px;
+	color:#fff;
+}
+.a-fadeinL{
+	animation:1s fadeinL ease-out .5s backwards;
+}
+.a-fadeinL_2{
+	animation:1s fadeinL2 linear .8s backwards;
+}
+@keyframes fadeinL{
+    0%{opacity:0;transform:translateX(-100px);}
+    100%{opacity:1;transform:translateX(0);}
+}
+@keyframes fadeinL2{
+    0%{opacity:0;transform:translateX(-100px);}
+    100%{opacity:1;transform:translateX(0);}
+}
+.delay-1{
+	transition-delay: .5s;
+}
+.wl_pull{
+	font-size: 20px;
+	margin-top: 30px;
+	transition-delay: .6s;
+}
+.wl_pull span{
+	padding-left: 20px;
+	font-size: 20px;
+}
+/* 右边部分 */
+.wl_right{
+	position: relative;
+    height: 634px;
+    width: 50%;
+    text-align: center;
+}
+.wl_images{
+	min-height: 700px;
+	position: relative;
+    overflow: hidden;
+}
+.wl_images img{
+	cursor: pointer;
+    position: absolute;
+    transform-origin: 0px 0px 0px;
+    transition:.5s all;
+}
+.wl_phoneO{	
+    z-index: 20;
+    animation: 1s move1 forwards;/*
+    transform: translate(-106.5px, 25px) scale(1); */
+}
+.wl_phoneS{
+    
+    z-index: 19;
+    width:250px;
+    /* transform: translate(-262.661px, 60.625px) scale(0.85); */
+    animation: 1s move2 forwards;
+}
+.wl_phoneT{
+    z-index: 19;
+    width:250px;
+    /* transform: translate(112.761px, 60.625px) scale(0.85); */
+    animation: 1s move3 forwards;
+}
+ @keyframes move1 {
+	0% {transform:scale(1)}
+	100%{transform: translate(-106.5px, 25px)}	
+}
+@keyframes move2 {
+	0% {transform:scale(0.85)}
+	100%{transform: translate(-262.661px, 60.625px)}	
+}
+@keyframes move3 {	
+	0% {transform:scale(0.85)}
+	100%{transform: translate(112.761px, 60.625px)}	
+} 
+.wl_penguin{
+	width: 144.3px;
+	position: absolute;
+    top: 68%;
+    left: 28%;
+    z-index: 21;
+    animation: penguin_wrap 1.6s 3.5s linear forwards;
+}
+@keyframes penguin_wrap {
+	0% {
+	    transform: translate(0) scale(1);
+	}
+	30% {
+	    transform: translate(0) scale(1);
+	}
+	35% {
+	    transform: translateY(2px) scale(1.1,.95);
+	}
+	40% {
+	    transform: translateY(-10px) scale(.95,1.1);
+	}
+	45% {
+	    transform: translateY(-10px) scale(1);
+	}
+	70% {
+	    transform: translateY(-10px) scale(1);
+	}
+	75% {
+	    transform: translateY(2px) scale(1.1,.95);
+	}
+	80% {
+	    transform: translate(0) scale(1);
+	}
+	100% {
+	   	transform: translate(0) scale(1);
+	}
+}
+/* 中间按钮 */
+
+.wl_button{
+    width: 36px;
+    height: 53px;
+    border:1px solid #fff;
+    position: absolute;
+    cursor: pointer;
+    left:50%;
+    margin-left:-3.5px;
+    bottom:43px;
+    border-radius:18px;
+    z-index: 22;
+}
+.wl_button i{
+	width:7px;
+	height:7px;
+	border-radius:50%;
+	background:#fff;
+	position: absolute;
+    top: 10px;
+    left: 15px;
+    animation: 1.5s wheel_anim infinite;
+}
+@keyframes wheel_anim  {
+	0% {
+    	top: 13px;
+	}
+	20% {
+	    top: 20px;
+	}
+	30% {
+	    top: 13px;
+	}
+	50% {
+	    top: 20px;
+	}
+	60% {
+	    top: 13px;
+	}
+	100% {
+	    top: 13px;
+	}
+}
+.spacer{
+	display: block;
+    height: 100%;
+    width: 100%;
+    top: 0;
+}
+/* 第二部分 轮播 */
+.wl_scroll{
+	position:relative;
+	background-color: #fff;
+    height: 300vh;
+    z-index: 20;
+}
+.wl_scroll .wl_wraper{	
+    position: absolute;
+    display: block;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 50%;
+    height: 100%;
+}
+.wl_vertical{
+	width:100%;
+	height:100%;
+}
+.wl_wraper .wl_vertical{
+	position: absolute;
+	
+}
+.wl_wraper .wl_vertical .wl_align,.text-wraper .wl_vertical .wl_align{
+	padding-top: 70px;
+}
+.wl_device{
+	max-width: 383.76px;
+	margin: 0 0 0 auto;
+    /* position: relative; */
+    width: 492px;
+    margin-left:290px;
+}
+.wl_container{
+	position: relative;
+	/* width:100%; */
+	height:488px;
+	background:url(../imgs/iPhone.png) no-repeat;
+	background-size:contain;
+}
+
+.ant-carousel{
+	width: 195px;
+    height: 347px;
+    position: absolute;
+    z-index: 2;
+    left: 30.2%;
+    top: 10.5%;
+}
+.ant-carousel .imgs{
+	width:100%;
+}
+.ant-carousel .wl_two{
+	width:195px;
+	height:347px;
+}
+/* 右边部分 */
+
+.text-wraper{
+	position: absolute;
+    display: block;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    text-align: left;
+}
+.step_text{
+	max-width: 440px;
+    height: 25%;
+    margin-left: 110px;
+}
+.right_img{
+	width: 93.6px;
+    height: 93.6px;
+}
+.subtitle{
+	font-size: 37px;
+    line-height: 37px;
+    color: #295ea8;
+    font-weight: 400;
+    margin: 20px 0;
+}
+.subtitleBom{
+	font-size: 15px;
+    margin-bottom: 11px;
+    color: #295ea8;
+    font-weight: 400;
+    padding-top: 15px;
+}
+.wl_weixin div{
+	display:inline-block;
+	width:131px;
+	text-align:center;
+	color: #acb2c1;
+	font-size: 12px;
+	margin-bottom: 30px;
+}
+.wl_RightQQ{
+	margin-left:20px;
+}
+.wl_weixin div img{width:131px;margin-bottom:5px;}
+.wl_details{
+	width:200px;
+	height:50px;
+    background-color: #3399eb;
+    text-align: center;
+    border: 1px solid transparent;
+    border-radius: 25px;
+    
+}
+.wl_details a{
+	display:inline-block;
+	width:200px;
+	height:50px;
+	color: #fff;
+	font-size: 20px;
+    line-height: 50px;
+}
+.detOrange{
+	background-color: #fe7639;
+}
+.wl_margin{
+	margin-top:60px;
+}
+.wl_fontB{
+	margin-bottom: 5px;
+    font-size: 15px;
+    color: #295ea8;
+    margin-top:15px;
+}
+.subtitBom{
+	margin-bottom: 5px;
+    font-size: 15px;
+    color: #295ea8;
+}
+.ant-carousel .wl_two img,.ant-carousel .wl_four img{
+	display:none;
+}
+.wl_relative{
+	position:relative;
+	height:100%;
+}
+#homepage{
+	width:100%;
+	height:100%;
+}
+.footerBox{
+	width:100%;
+	height:300px;
+	background:red;
+
+}
