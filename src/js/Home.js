@@ -24,6 +24,7 @@ import er2 from '../imgs/qrcode.png';
 
 class Home extends Component {
 	componentDidMount(){
+		
 		var deviceLeft=document.getElementById('deviceLeft');
 		var scroll=document.getElementById('scroll');
 		var header=document.getElementById('header');			
