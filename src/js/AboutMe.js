@@ -12,11 +12,36 @@ import peo3 from '../imgs/peo3.jpg';
 import img1 from '../imgs/lan-bg.jpg';
 import img2 from '../imgs/line-bg.png';
 class AboutMe extends Component {
+super()
+this.State={
+  Home:[];
+
+
+}
+
+
+
+
+
 
 componentDidMount(){
 //     function onChange(a, b, c) {
 //   console.log(a, b, c);
 // }
+$.ajax({
+    type:"post",
+    url:"http://localhost:8005/Home/Home",
+    async:true,
+    
+    
+    success:function(e){
+      Home:e
+
+
+
+    }
+
+  })
 
 
 
@@ -28,8 +53,11 @@ componentDidMount(){
     	<div className="x-warp">
 		 <ul className="AboutMe"> 
 		 	<li className='listO'>
-              <h4>微众银行 
+              <h4>微众银行{
+                /* this.state.Home.tit[0]*/
+              }
               	<a><span></span></a>
+              }
               </h4>
               <div className="banJR clear">
                  <img src={AboutImage} alt="AboutImage" title="AboutImage"/>
