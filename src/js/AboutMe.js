@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../css/AboutMe.css';
 import { Carousel } from 'antd';
+import $ from 'jquery';
 import Footer from './Footer';
 import AboutImage from '../imgs/aboutMe.jpg';
 import Image1 from '../imgs/gd01.png';
@@ -12,62 +13,181 @@ import peo3 from '../imgs/peo3.jpg';
 import img1 from '../imgs/lan-bg.jpg';
 import img2 from '../imgs/line-bg.png';
 class AboutMe extends Component {
-super()
-this.State={
-  Home:[];
+constructor(){
+  super()
+  this.state={
+    AboutOne:[],
+    AboutOnes:[],
+    Abg:[],
+    AboutTwo1:[],
+    AboutTwo2:[],
+    About3:[],
+    About3_2:[],
+    About4:[],
+    About4_2:[],
+    About4_3:[],
+    About4_4:[],
+    About4_5:[],
+    About4_6:[]
 
-
+  }
 }
-
-
-
-
-
-
-componentDidMount(){
-//     function onChange(a, b, c) {
-//   console.log(a, b, c);
-// }
-$.ajax({
-    type:"post",
-    url:"http://localhost:8005/Home/Home",
-    async:true,
-    
-    
-    success:function(e){
-      Home:e
-
-
-
+componentDidMount=function(){
+      var index=0;
+      var imgnum=$('#showH a').length;
+     function pic(){ 
+    //轮播切换图片的函数，思路就是通过定时器不停的改变index的值，选择对应的图片页面进行显示         
+       var p=setInterval(function(){
+            index++;
+             
+            if(index>=imgnum){
+                index=0; //当index大于图片总个数时回到第一屏
+            }
+             
+            selectimg(index); //通过index显示对应图片
+     
+        },2000);
+         
     }
+     
+    function selectimg(index){ //通过index显示对应的图片，并隐藏这张图片的其他图片
+        $('#showH a').eq(index).fadeIn(600).siblings().fadeOut(600);  
+    }
+    $(function(){
+        $('.jieshao').mouseover(function(){
+          $(this).children('div').css('opacity','1').parent().siblings().children('div').css('opacity','0')
+        })
 
+    })
+
+$.ajax({
+    type:"get",
+    url:"http://localhost:8005/AboutOne/AboutMe",
+    async:true,       
+    success:function(e){
+      this.setState({
+         AboutOne:e[0].tit,
+         AboutOnes:e
+
+      })
+
+    }.bind(this)
   })
+$.ajax({
+    type:"get",
+    url:"http://localhost:8005/AboutOne/AboutImg",
+    async:true,       
+    success:function(e){
+       this.setState({
+        Abg:e[0].Img
 
+      })
 
+    }.bind(this)
+  })
+$.ajax({
+    type:"get",
+    url:"http://localhost:8005/About4/About4",
+    async:true,       
+    success:function(e){
+       this.setState({
+         About3:e[0].h6,
+         About3_2:e[0].pcon,
 
+      })
+
+    }.bind(this)
+  })
+$.ajax({
+    type:"get",
+    url:"http://localhost:8005/About4/About4",
+    async:true,       
+    success:function(e){
+      var About4=[];
+      var About4_2=[] ; 
+      var About4_3=[] ; 
+      var About4_4=[] ;
+      var About4_5=[] ;
+      var About4_6=[] ;    
+       for(var i in e){
+          if(e[i].art=='one'){
+            About4.push(e[i])
+          }else if(e[i].art=='two'){
+            About4_2.push(e[i])
+
+          }
+          else if(e[i].art=='three'){
+            About4_3.push(e[i])
+
+          }
+          else if(e[i].art=='four'){
+            About4_4.push(e[i])
+
+          }
+          else if(e[i].art=='1'){
+            About4_5.push(e[i])
+
+          }
+           else if(e[i].art=='2'){
+            About4_6.push(e[i])
+
+          }
+      }
+       this.setState({
+          About4:About4,
+          About4_2:About4_2,
+          About4_3:About4_3, 
+          About4_4:About4_4,
+          About4_5:About4_5,
+          About4_6:About4_6            
+      })
+        console.log(About4)
+    }.bind(this)
+  })
+$.ajax({
+    type:"get",
+    url:"http://localhost:8005/AboutTwo/AboutTwo",
+    async:true,       
+    success:function(e){
+      var AboutTwo1=[];
+      var AboutTwo2=[];
+      for(var i in e){
+          if(e[i].img2==null){
+            AboutTwo1.push(e[i])
+          }else{
+            AboutTwo2.push(e[i])
+          }
+      }
+           this.setState({
+           AboutTwo1:AboutTwo1,
+           AboutTwo2:AboutTwo2,
+      })
+
+    }.bind(this)
+  })
 }
-
-
   render() {
     return (
     	<div className="x-warp">
 		 <ul className="AboutMe"> 
 		 	<li className='listO'>
-              <h4>微众银行{
-                /* this.state.Home.tit[0]*/
+              <h4>{
+                 this.state.AboutOne
               }
               	<a><span></span></a>
-              }
               </h4>
               <div className="banJR clear">
-                 <img src={AboutImage} alt="AboutImage" title="AboutImage"/>
+                 <img src={this.state.Abg} alt="AboutImage" title="AboutImage"/>
               </div>
               <div className="Head-content">
-	              <h2>微众银行</h2>
-	              <p>微众银行是国内首家开业的民营银行，由腾讯、百业源和立业等多家知名企业发起设立</p>
-	              <p>于2014年12月获得由深圳银监局颁发的金融许可证，注册资本为人民币42亿元</p>
-	              <p>微众银行严格遵守国家金融法律法规和监管政策，以合规经营和稳健发展为基础</p>
-	              <p>致力于为普罗大众、微小企业提供差异化、有特色、优质便捷的金融服务</p>
+	              <h2>{this.state.AboutOne}</h2>
+
+                {  this.state.AboutOnes.map(function(val,k){
+                  return <p key={k}>{val.con}</p>
+                })
+                }	
+
+
               </div>
           </li>
              <li className='listS'>
@@ -75,24 +195,21 @@ $.ajax({
             <div className="listS-content">
               <h2>主要股东</h2>
               <div className="yqlj clear">
-                <a href="#"><img src={Image1} alt="" />腾讯</a>
-                <a href="#"><img src={Image2} alt="" />百业源投资</a>
-                <a href="#"><img src={Image3} alt="" />立业集团</a>
+              {  this.state.AboutTwo1.map(function(val,k){
+
+                 return  <a href="#" key={k} ><img src={val.img1} alt="" />{val.con1}</a>
+                })
+                }
               </div>
               <h5>管理层</h5>
               <div className="Peoclass clear">
-                <div className="peolist">
-                  <img src={peo1} alt="pe01" />
-                  <p>顾敏 （董事长）</p>
-                </div>
-                <div className="peolist">
-                  <img src={peo2} alt="pe02" />
-                  <p>李南青 （行长）</p>
-                </div>
-                <div className="peolist">
-                  <img src={peo3} alt="pe03" />
-                  <p>梁瑶兰 （监事长）</p>
-                </div>
+              {  this.state.AboutTwo2.map(function(val,k){
+                 return <div className="peolist" key={k} >
+                        <img src={val.img2} alt="" />
+                        <p>{val.con2}</p>
+                        </div>
+                })
+                }
               </div>
             </div>
           </li>
@@ -100,30 +217,39 @@ $.ajax({
               <div className="lunboTwo">
                    <h4>微众里程碑</h4>
                       <Carousel arrows>
+                       <div>
+                        <div className="item">
+                            <div className="item-head"></div>
+                            <div className="item-con">
+                                  <h6>{this.state.About3}</h6>
+                                  <p>                                 
+                                    {this.state.About3_2}                                
+                                  </p>
+                            </div>
+                         </div>                              
+                        </div> 
                         <div>
                         <div className="item">
                             <div className="item-head"></div>
                             <div className="item-con">
-                                  <h6>深圳前海微众银行股份有限公司正式成立</h6>
-                                  <p>在获得《深圳银监局关于深圳前海微众银行股份有限公司开业的批复》
-                                  （深银监复〔2014〕420号）并取得金融许可证之后，我行于2014年12月16日获得营业执照、组织机构代码、
-                                  税务登记证，宣告深圳前海微众银行股份有限公司正式成立。
+                                   <h6>{this.state.About3}</h6>
+                                  <p>                                 
+                                    {this.state.About3_2}                                
                                   </p>
                             </div>
                          </div>                              
-                        </div>  
-                        <div>
+                        </div> 
+                      <div>
                         <div className="item">
                             <div className="item-head"></div>
                             <div className="item-con">
-                                  <h6>深圳前海微众银行股份有限公司正式成立</h6>
-                                  <p>在获得《深圳银监局关于深圳前海微众银行股份有限公司开业的批复》
-                                  （深银监复〔2014〕420号）并取得金融许可证之后，我行于2014年12月16日获得营业执照、组织机构代码、
-                                  税务登记证，宣告深圳前海微众银行股份有限公司正式成立。
+                                  <h6>{this.state.About3}</h6>
+                                  <p>                                 
+                                    {this.state.About3_2}                                
                                   </p>
                             </div>
                          </div>                              
-                        </div>                     
+                        </div>        
                       </Carousel>
               </div>
           </li>
@@ -132,98 +258,51 @@ $.ajax({
                    <h4>荣誉榜</h4>
                       <Carousel arrows>
                         <div className="lun-box">
-                              <ul>
-                                <li>
-                                  <div></div>
-                                </li>
-                                <li>
-                                  <div></div>
-                                </li>
-                                <li>
-                                  <div></div>
-                                </li>
-                                <li>
-                                  <div></div>
-                                </li>
-                                <li>
-                                  <div></div>
-                                </li>
-                                <li>
-                                  <div></div>
-                                </li>
-                                <li>
-                                  <div></div>
-                                </li>
-                                <li>
-                                  <div></div>
-                                </li>
-                                <li>
-                                  <div></div>
-                                </li>                              
+                              <ul className="rong">
+                              {this.state.About4_5.map(function(val,k){
+                        return <li key={k} className="jieshao" >
+                                  <img src={val.Img} alt="" />
+                                  <div><p>{val.con}</p></div> 
+                               </li>
+                      })
+                      }                                       
                               </ul>
                         </div>
                         <div className="lun-box">
-                              <ul>
-                                <li>
-                                  <div></div>
-                                </li>
-                                <li>
-                                  <div></div>
-                                </li>
-                                <li>
-                                  <div></div>
-                                </li>
-                                <li>
-                                  <div></div>
-                                </li>
-                                <li>
-                                  <div></div>
-                                </li>
-                                <li>
-                                  <div></div>
-                                </li>
-                                <li>
-                                  <div></div>
-                                </li>
-                                <li>
-                                  <div></div>
-                                </li>
-                                <li>
-                                  <div></div>
-                                </li>                              
+                              <ul className="rong">
+                               {this.state.About4_6.map(function(val,k){
+                        return <li key={k} >
+                                  <img src={val.Img} alt="" />
+                                  <div><p>{val.con}</p></div> 
+                               </li>
+                      })
+                      }           
+                                                   
                               </ul>
                         </div>
                         <div className="lun-box">
-                              <ul>
-                                <li>
-                                  <div></div>
-                                </li>
-                                <li>
-                                  <div></div>
-                                </li>
-                                <li>
-                                  <div></div>
-                                </li>
-                                <li>
-                                  <div></div>
-                                </li>
-                                <li>
-                                  <div></div>
-                                </li>
-                                <li>
-                                  <div></div>
-                                </li>
-                                <li>
-                                  <div></div>
-                                </li>
-                                <li>
-                                  <div></div>
-                                </li>
-                                <li>
-                                  <div></div>
-                                </li>                              
+                              <ul className="rong">
+                               {this.state.About4_6.map(function(val,k){
+                        return <li key={k} >
+                                  <img src={val.Img} alt="" />
+                                  <div><p>{val.con}</p></div> 
+                               </li>
+                      })
+                      }           
+                                                   
                               </ul>
-                        </div>                       
+                        </div>
+                        <div className="lun-box">
+                              <ul className="rong">
+                               {this.state.About4_5.map(function(val,k){
+                        return <li key={k} >
+                                  <img src={val.Img} alt="" />
+                                  <div><p>{val.con}</p></div> 
+                               </li>
+                      })
+                      }                                                           
+                              </ul>
+                        </div>                            
                       </Carousel>
               </div>
           </li>
@@ -231,22 +310,108 @@ $.ajax({
               <img src={img1} alt="" className="lan-bg"/>
               <p>连接伙伴</p>
               <div className="line-bg">
-                  <div className="icon-1 line-bg-classOne"></div>
-                  <div className="icon-2 line-bg-classOne"></div>
-                  <div className="icon-3 line-bg-classOne"></div>
-                  <div className="icon-1 line-bg-classTwo"></div>
-                  <div className="icon-2 line-bg-classTwo"></div>
-                  <div className="icon-3 line-bg-classTwo"></div>
-                  <div className="icon-4 line-bg-classTwo"></div>
-                  <div className="icon-5 line-bg-classTwo"></div>
-                  <div className="icon-6 line-bg-classTwo"></div>
-                  <div className="icon-1 line-bg-classThree"></div>
-                  <div className="icon-2 line-bg-classThree"></div>
-                  <div className="icon-1 line-bg-classFore"></div>
-                  <div className="icon-2 line-bg-classFore"></div>
-                  <div className="icon-3 line-bg-classFore"></div>
-                  <div className="icon-1 line-bg-classFive"></div>
-                  <div className="icon-1 line-bg-classSix"></div>
+                  <div className="icon-1 line-bg-classOne">
+                      {this.state.About4.map(function(val,k){
+                        return <a key={k} ><img src={val.Img} alt="" /></a>
+                      })
+                      }
+                  </div>
+                  <div className="icon-2 line-bg-classOne" id="showH">                      
+                      {this.state.About4_3.map(function(val,k){
+                        return <a key={k} ><img src={val.Img} alt="" /></a>
+                      })
+                      }
+                  </div>
+                  <div className="icon-3 line-bg-classOne">
+                      {this.state.About4_2.map(function(val,k){
+                        return <a key={k} ><img src={val.Img} alt="" /></a>
+                      })
+                      }
+                  </div>
+                  <div className="icon-1 line-bg-classTwo">
+                        {this.state.About4_2.map(function(val,k){
+                        return <a key={k} ><img src={val.Img} alt="" /></a>
+                      })
+                      }
+                  </div>
+                  <div className="icon-2 line-bg-classTwo">
+                        {this.state.About4_4.map(function(val,k){
+                        return <a key={k} ><img src={val.Img} alt="" /></a>
+                      })
+                      }
+                  </div>
+                  <div className="icon-3 line-bg-classTwo">
+                        {this.state.About4_3.map(function(val,k){
+                        return <a key={k} ><img src={val.Img} alt="" /></a>
+                      })
+                      }
+
+                  </div>
+                  <div className="icon-4 line-bg-classTwo">
+                    {this.state.About4.map(function(val,k){
+                        return <a key={k} ><img src={val.Img} alt="" /></a>
+                      })
+                      }
+                  </div>
+                  <div className="icon-5 line-bg-classTwo">
+                        {this.state.About4_2.map(function(val,k){
+                        return <a key={k} ><img src={val.Img} alt="" /></a>
+                      })
+                      }
+                  </div>
+                  <div className="icon-6 line-bg-classTwo">
+                        {this.state.About4_3.map(function(val,k){
+                        return <a key={k} ><img src={val.Img} alt="" /></a>
+                      })
+                      }
+
+
+                  </div>
+                  <div className="icon-1 line-bg-classThree">
+                    ` {this.state.About4_4.map(function(val,k){
+                        return <a key={k} ><img src={val.Img} alt="" /></a>
+                      })
+                      }
+
+
+                  </div>
+                  <div className="icon-2 line-bg-classThree">
+                        {this.state.About4_2.map(function(val,k){
+                        return <a key={k} ><img src={val.Img} alt="" /></a>
+                      })
+                      }
+                  </div>
+                  <div className="icon-1 line-bg-classFore">
+                      {this.state.About4_3.map(function(val,k){
+                        return <a key={k} ><img src={val.Img} alt="" /></a>
+                      })
+                      }
+
+                  </div>
+                  <div className="icon-2 line-bg-classFore">
+                        {this.state.About4_2.map(function(val,k){
+                        return <a key={k} ><img src={val.Img} alt="" /></a>
+                      })
+                      }
+                  </div>
+                  <div className="icon-3 line-bg-classFore">
+                        {this.state.About4_3.map(function(val,k){
+                        return <a key={k} ><img src={val.Img} alt="" /></a>
+                      })
+                      }
+                  </div>
+                  <div className="icon-1 line-bg-classFive">
+                        {this.state.About4_4.map(function(val,k){
+                        return <a key={k} ><img src={val.Img} alt="" /></a>
+                      })
+                      }
+                  </div>
+                  <div className="icon-1 line-bg-classSix">
+                        {this.state.About4.map(function(val,k){
+                        return <a key={k} ><img src={val.Img} alt="" /></a>
+                      })
+                      }
+                  </div>
               </div>
           </li>
 		 </ul>
