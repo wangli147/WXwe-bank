@@ -2,8 +2,38 @@ import React, { Component } from 'react';
 import { Carousel } from 'antd';
 import '.././App.css';
 import '../css/footer.css';
+import $ from 'jquery';
 
 class Footer extends Component {
+	constructor(){
+	    super()
+	    this.state={
+	       li:[]
+	    }
+	 }
+	componentDidMount(){
+		$.ajax({
+        type:"get",
+        url:"http://localhost:8005/footer/footer",
+        async:true,
+        contentType:false,
+        processData:false,
+        success:function(data){
+          this.setState({
+          	  tit:data[0].li1,
+          	  tit1:data[0].li2,
+          	  tit2:data[0].li3,
+          	  tit3:data[0].li4,
+          	  h1:data[0].h1,
+          	  tel:data[0].tel,
+          	  date:data[0].dat,
+          	  left:data[0].left,
+              li:data    
+          })  
+        }.bind(this)      
+         
+      })
+	}
   render() {
     return (
 	    <div>
@@ -11,50 +41,66 @@ class Footer extends Component {
 	    		<div className="wl_Finner">
 	    			<div className="wl_mainFo clear">
 	    				<ul className="wl_menu">
-	    					<li>
-	    						<dl>
-	    							<dt>金融信息</dt>
-	    							<dd><a href="#">存款利率表</a></dd>
-	    							<dd><a href="#">贷款利率表</a></dd>
-	    							<dd><a href="#">服务价目表</a></dd>
+	    					<li>	    						
+								<dl >
+	    							<dt>{this.state.tit}</dt>
+	    							{this.state.li.map(function(e,i){
+										return (
+			    							<dd key={i}><a href="#">{e.con1}</a></dd>			    				
+			    						)
+									})}
+	    						</dl>
+	    							
+	    					</li>
+	    					<li>	    						
+								<dl >
+	    							<dt>{this.state.tit1}</dt>
+	    							{this.state.li.map(function(e,i){
+										return (
+			    							<dd key={i}><a href="#">{e.con2}</a></dd>			    				
+			    						)
+									})}
 	    						</dl>
 	    					</li>
-	    					<li>
-	    						<dl>
-	    							<dt>关于我们</dt>
-	    							<dd><a href="#">微众里程碑</a></dd>
-	    							<dd><a href="#">连接伙伴</a></dd>
-	    							<dd><a href="#">加入我们</a></dd>
+	    					<li>	    						
+								<dl >
+	    							<dt>{this.state.tit2}</dt>
+	    							{this.state.li.map(function(e,i){
+										return (
+			    							<dd key={i}><a href="#">{e.con3}</a></dd>			    				
+			    						)
+									})}
 	    						</dl>
 	    					</li>
-	    					<li>
-	    						<dl>
-	    							<dt>新手指南</dt>
-	    							<dd><a href="#">开户指引</a></dd>
+	    					<li>	    						
+								<dl>
+	    							<dt>{this.state.tit3}</dt>
+	    							{this.state.li.map(function(e,i){
+										return (
+			    							<dd key={i}><a href="#">{e.con4}</a></dd>			    				
+			    						)
+									})}
 	    						</dl>
 	    					</li>
-	    					<li>
-	    						<dl>
-	    							<dt>帮助中心</dt>
-	    							<dd><a href="#">常见问题</a></dd>
-	    						</dl>
-	    					</li>
+	    					
 	    				</ul>
 	    				<div className="wl_tel right">
-	    					<h1>全国客服热线</h1>
-	    					<p className="wl_phone">400-999-8800</p>
-	    					<p className="date">周一至周日9:00-18:00</p>
+	    					<h1>{this.state.h1}</h1>
+	    					<p className="wl_phone">{this.state.tel}</p>
+	    					<p className="date">{this.state.date}</p>
 	    				</div>
 	    			</div>
 	    			<div className="wl_bottom clear">
 	    				<div className="left">
-	    					银行经营场所：广东省深圳市南山区沙河西路1819号深圳湾科技生态园7栋A座
+	    					{this.state.left}
 	    				</div>
 	    				<ul className="copyright right">
-	    					<li>Copyright © 2014 - 2017 WeBank</li>
-	    					<li>All Rights Reserved.</li>
-	    					<li>微众银行版权所有</li>
-	    					<li><a href="#">粤ICP备14074715号-1</a></li>
+	    					{this.state.li.map(function(e,i){
+	    						return (
+	    							<li key={i}>{e.copy}</li>
+	    						)
+	    					})}
+	    					
 	    				</ul>
 	    			</div>
 	    		</div>

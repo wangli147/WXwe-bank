@@ -59,7 +59,7 @@ width:100vw;
 
 
 }
-.conetnt li{
+#list a li{
  float:left;
  width:380px;
  height:674px;
@@ -68,15 +68,22 @@ width:100vw;
   top:-130px; 
   transition:.5s;
 }
-.conetnt li:hover{
+#list a:hover li{
  transform:translateY(10px);
  transform:scale(1.05);
  box-shadow:1px 1px 15px #ccc,1px -1px 15px #ccc;
 }
-.x-le{
-   margin-left:30px;
+#list .link{
+  float:left;
+ width:380px;
+ height:674px;
+  margin-left:30px;
 }
-.con-head-bg{
+#list a:first-child{
+  margin-left:0;
+}
+
+#list .link .con-head-bg{
   height:232px;
   background:#445c95;
   text-align:center;
@@ -84,11 +91,11 @@ width:100vw;
 
 
 }
-.x-mid .con-head-bg{
+#list a:nth-child(2) li .con-head-bg{
   background:#3399eb;
 
 }
-.x-right .con-head-bg{
+#list a:last-child li .con-head-bg{
   background:#d75a4a;
 
 }
@@ -125,26 +132,27 @@ width:100vw;
   margin-top:5px;
   padding-left:30px;
 }
-.x-More{
+#list .link li .x-More{
   width:210px;
   height:50px;
   background:#f54925;
   border-color:#f54925;
-  border-radius:25px;
-  font-size:20px;
-  line-height:50px;
-  color:#fff;
+  border-radius:25px;  
+  line-height:50px;  
   text-align:center;
   position:absolute;
   left:30px;
   bottom:80px;
   opacity:0.9099;
+  font-size:20px;
+  color:#fff;
 }
+
 .x-con-box{
   height:462px;
   position:relative;
 }
-.x-bg-blue{
+#list .link:nth-child(2) li .x-con-box p:last-child{
   background:#3399eb;
 
 }

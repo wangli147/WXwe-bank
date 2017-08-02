@@ -11,28 +11,63 @@ import img2 from '../imgs/45.png'
 
 
 class Detail extends Component {
+    constructor(){
+        super()
+        this.state={
+          list:[]
+        }
+     }
     componentDidMount(){
+    $.ajax({
+            type:"get",
+            url:"http://localhost:8005/Finance/Detail",
+            async:true,
+            contentType:false,
+            processData:false,
+            success:function(data){
+                console.log(data)
+                  this.setState({
+                      left:data[0].left,
+                      more:data[0].more,
+                      list:data
+
+                  })  
+            }.bind(this)
+        }) 
     var header=document.getElementById('header');           
     var headerS=document.getElementById('headerS');
-    var scrollT=document.getElementById('scrollT');
-    var t = scrollT.offsetTop;
-
-        window.addEventListener('scroll',function(){
-             var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
-             if(scrollTop>t){
-                headerS.style.display='block';
-                header.style.display='none';
-             }else{
-                headerS.style.display='none';
-                header.style.display='block';
-             }
+    var scroll=document.getElementById('scrollT');
+    var t = scroll.offsetTop;
+    if(((document.body.scrollTop)||(document.documentElement.scrollTop))==0){
+         headerS.style.display='none';
+         header.style.display='block';         
+    }
+    function addEvent(obj,event,fn){
+        obj.attachEvent?obj.attachEvent('on'+event,fn):obj.addEventListener(event,fn);
+    }
+    addEvent(window,'scroll',function(){
+            var win =(navigator.userAgent).lastIndexOf('Chrome')!=-1 ? document.body : document.documentElement;
+             var scrollTop=win.scrollTop;
+            
+              if(scrollTop>t){
+                    headerS.style.display='block';
+                    headerS.style.transition='.5s';
+                    headerS.style.height='60px';
+                    header.style.display='none';
+                }else{
+                    header.style.position = 'fixed';
+                    header.style.top = '0';
+                    header.style.display='block';                               
+                    headerS.style.display='none';
+                }
         })
+    
   }
   render() {
     return (
 	    <div className="EnterprisePage">
             {/*了解详情*/}
-            <div className="enterTop">
+            <div className="enterTopD">
                 <div className="wrap">
                     <div className="lunBox">
                         <Carousel arrows>
@@ -47,7 +82,7 @@ class Detail extends Component {
                                     </div>
                                 </div>
                                 <div className="wl_messFont">
-                                    <h1 className="fadeinR">微信上可以借钱啦！</h1>
+                                    <h1 className="fadeinR">微信上可以借钱啦！</h1>                                       
                                     <p className="font">登录微信点击：我—钱包—微粒贷借钱—查看你的额度</p>
                                     <p className="bgImg"></p>
                                     <p className="bgFont">微信扫码查看额度</p>
@@ -78,41 +113,26 @@ class Detail extends Component {
                 <div className="wrap">
                     <h2 className="hd">微业贷</h2>
                     <ul className="wl_list">
-                        <li>微业贷是微众银行为广大中小微企业提供的线上流动资金贷款服务，该产品为结合大数据</li>
-                        <li>分析及互联网技术的一款金融创新产品。客户从申请至提款全部在线完成，无需抵质押，</li>
-                        <li>额度立等可见，资金分钟到账，按日计息，随借随还。微业贷将以科技金融为中小微企业</li>
-                        <li>提供高效便捷的融资服务。</li>
+                        {this.state.list.map(function(e,i){
+                            return (
+                                <li key={i}>{e.con}</li>
+                            )
+                         })}  
                     </ul>
                     <div className="ft">
                         <ul className="wl_con clear">
-                            <li>
-                                <div className="con-wrap">
-                                    <img src={pic}/>
-                                </div>
-                                <h2>智慧贷款</h2>
-                                <p>大数据定额，最高300万</p>
-                            </li>
-                            <li>
-                                <div className="con-wrap">
-                                    <img src={pic}/>
-                                </div>
-                                <h2>智慧贷款</h2>
-                                <p>大数据定额，最高300万</p>
-                            </li>
-                            <li>
-                                <div className="con-wrap">
-                                    <img src={pic}/>
-                                </div>
-                                <h2>智慧贷款</h2>
-                                <p>大数据定额，最高300万</p>
-                            </li>
-                            <li>
-                                <div className="con-wrap">
-                                    <img src={pic}/>
-                                </div>
-                                <h2>智慧贷款</h2>
-                                <p>大数据定额，最高300万</p>
-                            </li>
+                            {this.state.list.map(function(val,i){
+                                return (
+                                    <li key={i}>
+                                        <div className="con-wrap">
+                                            <img src={val.Img}/>
+                                        </div>
+                                        <h2>{val.h2}</h2>
+                                        <p>{val.p3}</p>
+                                        <p>{val.p4}</p>
+                                    </li>
+                                )
+                           })}
                         </ul>
                     </div>
                 </div>
@@ -120,8 +140,8 @@ class Detail extends Component {
             <div className="grayBg">
                 <div className="wrap">
                     <p className="fontSize">
-                        <a href="#" className="left why">微业贷如何申请？</a>
-                        <a href="#" className="right matter">了解更多问题</a>
+                        <a href="#" className="left why">{this.state.left}</a>
+                        <a href="#" className="right matter">{this.state.more}</a>
                     </p>
                 </div>
             </div>

@@ -230,35 +230,33 @@
     z-index: 20;
 }
 .wl_scroll .wl_wraper{	
-    position: absolute;
+/*     position: absolute;
     display: block;
     z-index: 1;
     left: 0;
-    top: 0;
+    top: 0; */
     width: 50%;
-    height: 100%;
+    /* height: 100%; */
 }
 .wl_vertical{
 	width:100%;
 	height:100%;
 }
-.wl_wraper .wl_vertical{
+/* .wl_wraper .wl_vertical{
 	position: absolute;
 	
-}
+} */
 .wl_wraper .wl_vertical .wl_align,.text-wraper .wl_vertical .wl_align{
 	padding-top: 70px;
 }
 .wl_device{
 	max-width: 383.76px;
-	margin: 0 0 0 auto;
-    /* position: relative; */
+    position: absolute;
     width: 492px;
-    margin-left:290px;
+    left:290px;
 }
 .wl_container{
 	position: relative;
-	/* width:100%; */
 	height:488px;
 	background:url(../imgs/iPhone.png) no-repeat;
 	background-size:contain;
@@ -279,6 +277,7 @@
 	width:195px;
 	height:347px;
 }
+
 /* 右边部分 */
 
 .text-wraper{
@@ -312,17 +311,28 @@
     font-weight: 400;
     padding-top: 15px;
 }
-.wl_weixin div{
+.wl_weixin{
+	height:166px;
+}
+
+.wl_weixin .wl_leftWei{
 	display:inline-block;
 	width:131px;
 	text-align:center;
 	color: #acb2c1;
 	font-size: 12px;
-	margin-bottom: 30px;
+	height:100%;
 }
-.wl_RightQQ{
+.wl_weixin .wl_RightQQ{
+	display:inline-block;
+	width:131px;
+	text-align:center;
+	color: #acb2c1;
+	font-size: 12px;
+	height:100%;
 	margin-left:20px;
 }
+
 .wl_weixin div img{width:131px;margin-bottom:5px;}
 .wl_details{
 	width:200px;
@@ -331,15 +341,18 @@
     text-align: center;
     border: 1px solid transparent;
     border-radius: 25px;
+    box-sizing:border-box;
     
 }
 .wl_details a{
-	display:inline-block;
-	width:200px;
-	height:50px;
+	float:left;
+	width:100%;
+	height:100%;
 	color: #fff;
 	font-size: 20px;
-    line-height: 50px;
+	margin-top:0;
+	line-height:50px;
+
 }
 .detOrange{
 	background-color: #fe7639;

@@ -16,7 +16,7 @@
     width: 100%;
     top: 0;
 }
-.enterTop{
+.EnterprisePage .enterTopD{
 	position: fixed;
 	top: 0;
     left: 0;
@@ -93,10 +93,10 @@
 	position:absolute;
 	right:0;
 }
-.wl_imgBox{
+.wl_messImg .wl_imgBox{
 	width:256px;
 	margin:0 auto;
-	margin-top:65px;
+	margin-top:60px;
 }
 .wl_img{
 	width:256px;

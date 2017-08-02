@@ -1,10 +1,10 @@
 /* 右边定位icon */
 .wl_icon{
     position:absolute;
-    top:90px;
+    bottom:90px;
     right:20px;
     width: 37px;
-    height: 156px;
+    height: 145px;
     background:#fff;
     border-radius:18px;
     box-shadow:2px 2px 5px #ccc,-2px -2px 5px #ccc;
@@ -89,14 +89,24 @@
     height:42px;
     border-top:1px solid #ccc;
     box-sizing:border-box;
+    border-bottom-right-radius: 18px;
+    border-bottom-left-radius: 18px;
 }
 .top>a{
     float:left;
     width:42px;
     height:37px;
-    padding-top:3px;
     text-align:center;
-    line-height:100%;
-    font-size:30px;
-    transform:rotate(90deg);
+    line-height:100%;    
+}
+.top a span{
+    display:inline-block;
+    font-size:35px;
+    transform:rotate(90deg);  
+}
+.wl_icon .top:hover{
+    background-color:#3399eb;
+}   
+.wl_icon .top:hover a span{
+    color:#fff;
 }

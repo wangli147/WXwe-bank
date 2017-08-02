@@ -36,6 +36,9 @@
 .wl_menu li dl dd a{
 	color: #9298a3;
 }
+.wl_menu li dl dd a:hover{
+    color: #295ea8;
+}
 .wl_tel h1{
 	font-size: 16px;
     color: #295ea8;

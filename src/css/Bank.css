@@ -1,4 +1,5 @@
 
+@import '~antd/dist/antd.css';
 .EnterprisePage{
 	width:100%;
 }
@@ -11,29 +12,38 @@
 	width:50%;
 	height:100%;
 }
-.Weiphone{
-	height:548px;
-	width:265px;
+
+.WeiLunB{
+	width:237px;
+	height:478px;
 	margin:0 auto;
-	margin-top:70px;
+	margin-top:100px;
 	background:url(../imgs/app2.png) no-repeat;
 	background-size:contain;
 	position:relative;
 }
-.Weiphone img{
+.WeiLunB .ant-carousel {
+	width: 195px;
+    height: 347px;
+    position: absolute;
+    z-index:10;
+    left: 8%;
+    top: 11%;
+    overflow: hidden;
+}
+.WeiLunB .ant-carousel .slick-slider{
 	width:100%;
-	height:100%;
+	height:347px;
 }
-.Weiphone .num4{
-	position: absolute;
-	z-index:20;
-    color: #ff5a37;
-    top: 14%;
-    left: 33%;
-    font-weight: 700;
-    font-size: 17px;
-    line-height: 17px;
+.WeiLunB .ant-carousel .slick-slider .slick-list{
+	width:100%;
+	height:347px;
 }
+.four img{
+	width:100%;
+}
+
+
 .WeiFont{
 	display:inline-block;
 	width:50%;
@@ -42,7 +52,7 @@
 	color:#fff;
 }
 .WeiFont h2{
-	margin-top:200px;
+	margin-top:100px;
 	font-size: 46px;
 	height:65px;
 	font-weight: 400;
@@ -53,6 +63,14 @@
 	font-size: 15px;
 	margin-top: 15px;
     margin-bottom: 30px;
+}
+.WeiFont .weiMa{
+	width:101px;
+	height:101px;
+	margin-bottom:5px;
+}
+.WeiFont .weiMa img{
+	width:100%;
 }
 .Weipage{
 	width: 226px;
@@ -77,7 +95,7 @@
     z-index: 0;
     width:100%;
     height: 100%;
-	background:url(../imgs/intro_wcd.jpg) no-repeat 50% 0;
+	background:url(../imgs/intro_app.jpg) no-repeat 50% 0;
 	background-size: cover;
 }
  
