@@ -10,10 +10,10 @@ a{
   text-decoration:none; 
 }
 .x-warp-end{
-background:rgba(0,0,0,.2);
+background:#ededed;
 width:1200px;
 padding:70px 0;
-
+margin-top:-10px;
 
 }
 .x-news-box{
