@@ -74,7 +74,7 @@ componentDidMount(){
 			                  	</div>
 			                  	)
 			                })
-			            }	
+			             }	
 		   			</li>
 		   			<li>
 		   				<div className="new-con">
