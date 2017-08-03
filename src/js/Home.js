@@ -6,6 +6,7 @@ import $ from 'jquery';
 import Footer from './Footer';
 import RightIcon from './RightIcon';
 import Detail from './Detail';
+import Finance from './Finance'
 import Bank from './Bank';
 import {
   BrowserRouter as Router,
@@ -58,7 +59,6 @@ class Home extends Component {
 		        contentType:false,
 		        processData:false,
 		        success:function(data){
-		        	console.log(data)
 		          this.setState({
 		           Rcon:data		           
 		          })  
@@ -114,8 +114,6 @@ class Home extends Component {
 		            header.style.display='none';
 		            deviceLeft.style.position = 'fixed';
 		            deviceLeft.style.top = '50px';
-		            // deviceLeft.style.height = '100%';
-		            // console.log(scrollTop)
 		        }else{
 		            header.style.position = 'fixed';
 		            header.style.top = '0';
@@ -143,7 +141,7 @@ class Home extends Component {
 			$('.wl_button').click(function(){
 				$('.wl_scroll').animate({ 
    					'top':'-100vh'		    
-				},1000)
+				},1000).stop()
 				document.body.scrollTop=740;
 			})
 	    	$('.wl_phoneS').click(function(){
@@ -152,19 +150,11 @@ class Home extends Component {
 	    		$('.wl_phoneT').css({ 'z-index': 19,'width':'250px','animation': '1s move2 forwards'})
 	    	})	    	
 	    })
-		/*<Router>
-    	<div>
-    	<Route path="/Detail" component={Detail}></Route>
-    	<Route path="/Bank" component={Bank}></Route>
-    	<Route exact path="/Home" render={()=>( 
-    		)}></Route>
-	    </div>
-    </Router>*/
+		
 		
 	}
   render() {
     return (
-
 	    <div id="homepage">
 	    	<div className="wl_home modPage modBand" id="no">
 	    		{/*首页bg*/}
@@ -241,7 +231,8 @@ class Home extends Component {
 												</div>
 											</div>
 											<p className="wl_details">
-												<Link key={i} to={`${e.to}`}>{e.btn}</Link>												
+												<Link  to={`${e.to}`}>{e.btn}</Link>
+												{/*<a href="Finance"></a>*/	}											
 											</p>
 										</div>
 									</div>
@@ -258,7 +249,7 @@ class Home extends Component {
 										{this.state.bot2}
 									</div>
 									<p className="wl_details detOrange wl_margin">
-										<a href="#">{this.state.bot3}</a>
+										<a href="Enterprise">{this.state.bot3}</a>
 									</p>
 									<p className="wl_fontB">
 									{this.state.bot4}</p>
@@ -274,7 +265,7 @@ class Home extends Component {
 										{this.state.bot7}
 									</div>
 									<p className="wl_details detOrange wl_margin">
-										<a href="./Weiche">{this.state.bot8}</a>
+										<Link  to='/Weiche'>{this.state.bot8}</Link>
 									</p>
 								</div>
 							</div>

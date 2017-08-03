@@ -42,43 +42,28 @@
   position:relative;
 }
 .lunBox .ant-carousel .slick-dots{opacity:0;}
-.ant-carousel .slick-prev{
+.ant-carousel .slick-arrow.slick-prev{
 	position: absolute;
     left: -10px;
     color:#fff;
-    z-index:3;
-    height:200px;
-     width:150px;
-     margin-top:-100px;
+    z-index:30;
+    width:56px;
+	height:110px;
+    margin-top:-100px;
+    display:block;
+    background:url(../imgs/jian_07.png) no-repeat;
 }
 .lunBox .ant-carousel .slick-next {
     right:-10px;
      color:#fff;
-    z-index:3;
-    height:200px;
-    width:150px;
+    z-index:30;
+    width:56px;
+	height:110px;
     margin-top:-100px;
+    display:block;
+    background:url(../imgs/jian_03.png) no-repeat;
 } 
-.btnLeft{
-	position:absolute;
-	top:50%;
-	margin-top:-55px;
-	left:25px;
-	width:56px;
-	height:110px;
-	 z-index:3;
-	background:url(../imgs/jian_07.png) no-repeat;
-}
-.btnRight{
-	position:absolute;
-	right:25px;
-	top:50%;
-	margin-top:-55px;
-	background:url(../imgs/jian_03.png) no-repeat;
-	width:56px;
-	height:110px;
-	z-index:3;
-}
+
 /* 轮播里的内容 */
 .wl_messImg{
 	width:50%;
@@ -117,7 +102,8 @@
 }
 .wl_mod img{
 	width:100%;
-	z-index:10;
+	z-index:100;
+	display:block;
 }
 
 .wl_messFont .fadeinR{

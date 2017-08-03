@@ -66,7 +66,7 @@ class Detail extends Component {
   render() {
     return (
 	    <div className="EnterprisePage">
-            {/*了解详情*/}
+            {/*微粒贷*/}
             <div className="enterTopD">
                 <div className="wrap">
                     <div className="lunBox">
@@ -103,8 +103,6 @@ class Detail extends Component {
                                 </div>
                             </div>
                         </Carousel>
-                        <span className="btnLeft"></span>
-                        <span className="btnRight"></span>
                     </div>
                 </div>
             </div>

@@ -7,6 +7,10 @@ import Enterprise from './js/Enterprise';
 import Finance from './js/Finance';
 import AboutMe from './js/AboutMe';
 import News from './js/News';
+import Detail from './js/Detail';
+import Bank from './js/Bank';
+import Weiche from './js/Weiche'
+
 
 import logo from './imgs/logo.png';
 import logos from './imgs/logo2.png';
@@ -60,6 +64,10 @@ class App extends Component {
         (document.body.scrollTop=0)||(document.documentElement.scrollTop=0)
   			$(this).addClass('active').siblings().removeClass('active');
   		})
+      $('.wl_nav li:last').click(function(){
+          $('#headerS').css("display",'none');
+          $('#header').css("display",'block');
+      })
       $('#nav_color li:first').css('color','#295ea8');
       $('#nav_color li').click(function(){
         $(this).css('color','#295ea8').siblings().css('color','');
@@ -68,7 +76,6 @@ class App extends Component {
       $('.wl_logo').click(function(){
         (document.body.scrollTop=0)||(document.documentElement.scrollTop=0)
       })
-
 
   	})
   }
@@ -108,7 +115,9 @@ class App extends Component {
           <Route path="/Finance" component={Finance}/>
           <Route path="/AboutMe" component={AboutMe}/>
           <Route path="/News" component={News}/>
-          
+          <Route path="/Detail" component={Detail}/>
+          <Route path="/Bank" component={Bank}/>
+          <Route path="/Weiche" component={Weiche}/>
          
       </div>
   </Router>

@@ -21,7 +21,7 @@ class Finance extends Component {
      AboutOnes2:[]
   }
 }
-	  componentDidMount(){
+componentDidMount(){
 	$.ajax({
     type:"get",
     url:"http://localhost:8005/News/News",

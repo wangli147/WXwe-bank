@@ -49,7 +49,7 @@ class Finance extends Component {
     	<div>
 		    <div className="Finance">
 		   		<div className="banJR clear">
-		   			<img src={GrJr} alt="GrJr" title="GrJr"/>
+		   			
 		   		</div>
 		   		<div className="Head-content">
 		   			<h2>{this.state.h1}</h2>

@@ -87,7 +87,7 @@ $.ajax({
   })
 $.ajax({
     type:"get",
-    url:"http://localhost:8005/About4/About4",
+    url:"http://localhost:8005/About3/About3",
     async:true,       
     success:function(e){
        this.setState({

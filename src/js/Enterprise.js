@@ -82,6 +82,13 @@ class Enterprise extends Component {
 			 	header.style.display='block';
 			 }
 		})
+
+		$('.wl_button').click(function(){
+			$('.enterBtn').animate({ 
+					'top':'-100vh'		    
+			},1000).stop()
+			document.body.scrollTop=740;
+		})
   }
   render() {
     return (
@@ -109,6 +116,9 @@ class Enterprise extends Component {
 			    			</div>
 		    		</div>
 	    		</div>
+	    		<div className="wl_button">
+    				<i className="wl_icon"></i>
+    			</div>
 	    	</div>
 	    	<div className="spacer"></div>
 	    	<div className="enterBtn" id="scroll">
