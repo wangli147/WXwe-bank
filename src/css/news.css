@@ -57,7 +57,18 @@ padding-bottom:100px;
      color: rgb(51, 153, 235);
      position:fixed;
      top:140px;
-     right:0px;
+     right:50px;
+}
+.new-tit span{
+  color:#295ea8;
+  position:fixed;
+/*   top:30%;
+  right:44px;
+  font-size:13px;
+  line-height:55px;
+  width:200px;
+  text-align:center; */
+
 }
 .new-tit li{
   height:90px;

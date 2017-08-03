@@ -87,13 +87,13 @@ $.ajax({
   })
 $.ajax({
     type:"get",
-    url:"http://localhost:8005/About4/About4",
+    url:"http://localhost:8005/About3/About3",
     async:true,       
     success:function(e){
+       console.log(e)
        this.setState({
          About3:e[0].h6,
-         About3_2:e[0].pcon,
-
+         About3_2:e[0].pcon
       })
 
     }.bind(this)
@@ -302,7 +302,30 @@ $.ajax({
                       })
                       }                                                           
                               </ul>
-                        </div>                            
+                        </div>    
+                        <div className="lun-box">
+                              <ul className="rong">
+                               {this.state.About4_6.map(function(val,k){
+                        return <li key={k} >
+                                  <img src={val.Img} alt="" />
+                                  <div><p>{val.con}</p></div> 
+                               </li>
+                      })
+                      }           
+                                                   
+                              </ul>
+                        </div>
+                        <div className="lun-box">
+                              <ul className="rong">
+                               {this.state.About4_5.map(function(val,k){
+                        return <li key={k} >
+                                  <img src={val.Img} alt="" />
+                                  <div><p>{val.con}</p></div> 
+                               </li>
+                      })
+                      }                                                           
+                              </ul>
+                        </div>                         
                       </Carousel>
               </div>
           </li>

@@ -74,7 +74,7 @@ class Finance extends Component {
 			                  	</div>
 			                  	)
 			                })
-			            }	
+			             }	
 		   			</li>
 		   			<li>
 		   				<div className="new-con">
