@@ -5,60 +5,126 @@ import '../css/home.css';
 import $ from 'jquery';
 import Footer from './Footer';
 import RightIcon from './RightIcon';
+import Detail from './Detail';
+import Bank from './Bank';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom'
 
-import phone1 from '../imgs/phone1.png';
-import phone2 from '../imgs/phone2.png';
-import phone3 from '../imgs/phone3.png';
-import penguin from '../imgs/qier.png';
 import pic1 from '../imgs/pic1.jpg';
 import pic2 from '../imgs/pic2.jpg';
 import pic3 from '../imgs/1.jpg';
 import pic4 from '../imgs/2.jpg';
 import pic5 from '../imgs/3.jpg';
 import pic6 from '../imgs/4.jpg';
-import weixin from '../imgs/1.png';
-import er1 from '../imgs/w1.png';
-import er2 from '../imgs/qrcode.png';
 
 
 
 class Home extends Component {
+	constructor(){
+	    super()
+	    this.state={
+	      Rcon:[],
+	      bot:[]
+	    }
+	 }
 	componentDidMount(){
+
+			$.ajax({
+		        type:"get",
+		        url:"http://localhost:8005/home/hometop",
+		        async:true,
+		        contentType:false,
+		        processData:false,
+		        success:function(e){
+		          this.setState({
+		            con:e[0].tit,
+		            con1:e[0].con1,
+		            con2:e[0].con2,
+		            img:e[0].img,
+		            img1:e[1].img,
+		            img2:e[2].img,
+		            img3:e[3].img		            
+		          })  
+		        }.bind(this)      
+		         
+		      })
+			$.ajax({
+		        type:"get",
+		        url:"http://localhost:8005/home/homeR1",
+		        async:true,
+		        contentType:false,
+		        processData:false,
+		        success:function(data){
+		        	console.log(data)
+		          this.setState({
+		           Rcon:data		           
+		          })  
+		        }.bind(this)      
+		         
+		      })
+			$.ajax({
+		        type:"get",
+		        url:"http://localhost:8005/home/homebot",
+		        async:true,
+		        contentType:false,
+		        processData:false,
+		        success:function(font){
+		        	// console.log(font)
+		          this.setState({
+		           bot:font[0].h1,
+		           bot1:font[0].p1,
+		           bot2:font[0].p2,
+		           bot3:font[0].btn,
+		           bot4:font[0].bot,
+		           bot5:font[1].h1,
+		           bot6:font[1].p1,
+		           bot7:font[1].p2,
+		           bot8:font[1].btn          
+		          })  
+		        }.bind(this)      
+		         
+		      })
 		
 		var deviceLeft=document.getElementById('deviceLeft');
-		var scroll=document.getElementById('scroll');
 		var header=document.getElementById('header');			
-		var headerS=document.getElementById('headerS');
 		var headerS=document.getElementById('headerS');
 		var iphone=document.getElementById('iphone');
 		var height=document.getElementById('height');
-		var scroll=document.getElementById('scroll');
-		// var wl_container=document.getElementById('wl_container');
-		var t = scroll.offsetTop;
-		window.addEventListener('scroll',function(){
-			 var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
-		        console.log(scrollTop,t);
-		        if(scrollTop>t){
+		var scrollt=document.getElementById('offset');
+		var t = scrollt.offsetTop;
+		if(((document.body.scrollTop)||(document.documentElement.scrollTop))==0){
+	   		 headerS.style.display='none';
+	   		 header.style.display='block';	   		 
+	   	}
+		function addEvent(obj,event,fn){
+	        obj.attachEvent?obj.attachEvent('on'+event,fn):obj.addEventListener(event,fn);
+	    }
+	    	
+	     addEvent(window,'scroll',function(){
+	     	var win =(navigator.userAgent).lastIndexOf('Chrome')!=-1 ? document.body : document.documentElement;
+	   		 var scrollTop=win.scrollTop;
+	   		
+	          if(scrollTop>t){
 		            headerS.style.display='block';
 		            headerS.style.transition='.5s';
 		            headerS.style.height='60px';
 		            header.style.display='none';
 		            deviceLeft.style.position = 'fixed';
-		            deviceLeft.style.height = '100%';
-
-		        }
-		        else{
-		            header.style.position = 'fixed';
-		            deviceLeft.style.position = 'absolute';
 		            deviceLeft.style.top = '50px';
+		            // deviceLeft.style.height = '100%';
+		            // console.log(scrollTop)
+		        }else{
+		            header.style.position = 'fixed';
 		            header.style.top = '0';
-		            
 		            header.style.display='block';
+		            deviceLeft.style.position = 'absolute';
+		            deviceLeft.style.top = '50px';		           		            
 		            headerS.style.display='none';
 		        }
-		       /* if(scrollTop>=1990){
-		        	deviceLeft.removeAttribute('id')
-		        }*/
+
 		        $(function(){
 		        	if(scrollTop>height.offsetTop){
 		        		$('.ant-carousel .wl_two').find('img').css('display','none')
@@ -66,40 +132,39 @@ class Home extends Component {
 		        	}else{
 		        		$('.ant-carousel .wl_two').find('img').css('display','block')
 		        		$('.ant-carousel .wl_four').find('img').css('display','none')
-		        	}
-		        	/*if(scrollTop>=2006){
-		        		deviceLeft.style.position='absolute';
-		        		deviceLeft.style.bottom='50px';
-		        	}*/
-		        })
-		        
-			// console.log(height.offsetTop)
-		})
+		        	}		        	
+		        })		        
+	     })
+			
 		$(function(){
-			var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
-			var top= document.getElementsByClassName('wl_scroll')[0];
-			console.log(top.offsetTop)
+
+
 			//点击中间按钮
 			$('.wl_button').click(function(){
-
-		    })
+				$('.wl_scroll').animate({ 
+   					'top':'-100vh'		    
+				},1000)
+				document.body.scrollTop=740;
+			})
 	    	$('.wl_phoneS').click(function(){
 	    		$(this).css({'z-index': 20,'animation': '1s move1 forwards'})
 	    		$('.wl_phoneO').css({ 'z-index': 19,'width':'250px','animation': '1s move3 forwards'})
 	    		$('.wl_phoneT').css({ 'z-index': 19,'width':'250px','animation': '1s move2 forwards'})
-	    	})
-	    	/*$('.wl_phoneT').click(function(){
-	    		$(this).css({'z-index': 20,'animation': '1s move1 forwards'})
-	    		$('.wl_phoneO').css({ 'z-index': 19,'width':'250px','animation': '1s move3 forwards'})
-	    		$('.wl_phoneS').css({ 'z-index': 19,'width':'250px','animation': '1s move2 forwards'})
-	    	})*/
-	    	
+	    	})	    	
 	    })
-		
+		/*<Router>
+    	<div>
+    	<Route path="/Detail" component={Detail}></Route>
+    	<Route path="/Bank" component={Bank}></Route>
+    	<Route exact path="/Home" render={()=>( 
+    		)}></Route>
+	    </div>
+    </Router>*/
 		
 	}
   render() {
     return (
+
 	    <div id="homepage">
 	    	<div className="wl_home modPage modBand" id="no">
 	    		{/*首页bg*/}
@@ -108,20 +173,20 @@ class Home extends Component {
 	    				<div className="wl_align clear">
 	    					<div className="wl_left left">
 	    						<h1 className="wl_title delay-1 a-fadeinL"> 
-	    							腾讯牵头发起设立的银行
+	    							{this.state.con}
 	    						</h1>
 	    						<p className="wl_pull a-fadeinL_2">
-	    							从一次惊喜
-	    							<span>到每次相伴</span>
+	    							{this.state.con1}
+	    							<span>{this.state.con2}</span>
 	    						</p>
 	    					</div>
 	    					<div className="wl_right right">
 	    						<div className="wl_align">
-    								<div className="wl_images">
-	    								<img className="wl_phoneO classN" src={phone1}/>
-	    								<img className="wl_phoneS" src={phone2}/>
-	    								<img className="wl_phoneT classT" src={phone3}/>
-	    								<img className="wl_penguin a-delay" src={penguin}/>
+    								<div className="wl_images">	    								
+    									<img className="wl_phoneO classN" src={this.state.img}/>
+	    								<img className="wl_phoneS" src={this.state.img1}/>
+	    								<img className="wl_phoneT classT" src={this.state.img2}/>
+	    								<img className="wl_penguin a-delay" src={this.state.img3}/>	    							
 	    							</div>
 	    						</div>
 	    					</div>
@@ -134,8 +199,8 @@ class Home extends Component {
 	    	</div>
 	    	<div className="spacer"></div>
 	    	{/*第二部分*/}
-	    	<div className="modPage wl_scroll modBand" id="scroll">
-	    	<div className="wl_relative">
+	    	<div className="modPage wl_scroll modBand" id="offset">
+	    		<div className="wl_relative" id="relative">
 	    			<div className="wl_wraper" id="deviceLeft">
 	    				<div className="wl_vertical"> 
 	    					<div className="wl_align">
@@ -157,72 +222,59 @@ class Home extends Component {
 	    				</div>
 					</div>
 					<div className="text-wraper">
-						<div className="step_text">
-							<div className="wl_vertical">
-								<div className="wl_align">
-									<img src={weixin} className="right_img"/>
-									<h2 className="subtitle">微粒贷</h2>
-									<h3 className="subtitleBom">让您的微小心愿立刻实现！</h3>
-									<div className="wl_weixin">
-										<div className="wl_leftWei">
-											<img src={er1}/>
-											请用微信扫描二维码
-										</div>
-										<div className="wl_RightQQ">
-											<img src={er2}/>
-											请用手机QQ扫描二维码
-										</div>
-									</div>
-									<p className="wl_details">
-										<a href="./Detail">了解详情</a>
-									</p>
-								</div>
-							</div>
-						</div>
-						<div className="step_text">
-							<div className="wl_vertical">
-								<div className="wl_align">
-									<img src={weixin} className="right_img"/>
-									<h2 className="subtitle">微众银行APP</h2>
-									<h3 className="subtitleBom">We给您带来更舒适便捷的银行服务体验！</h3>
-									<div className="wl_weixin">
-										<div className="wl_leftWei">
-											<img src={er1}/>
-											请用微信扫描二维码
+						{this.state.Rcon.map(function(e,i){
+							return (
+								<div className="step_text" key={i}>
+									<div className="wl_vertical">
+										<div className="wl_align">
+											<img src={e.img} className="right_img"/>
+											<h2 className="subtitle">{e.h1}</h2>
+											<h3 className="subtitleBom">{e.p}</h3>
+											<div className="wl_weixin">
+												<div className="wl_leftWei left">
+													<img src={e.wei1}/>
+													{e.font1}
+												</div>
+												<div className="wl_RightQQ left">
+													<img src={e.wei2}/>
+													{e.font2}
+												</div>
+											</div>
+											<p className="wl_details">
+												<Link key={i} to={`${e.to}`}>{e.btn}</Link>												
+											</p>
 										</div>
 									</div>
-									<p className="wl_details detOrange">
-										<a href="#">了解详情</a>
-									</p>
 								</div>
-							</div>
-						</div>
+							)
+						})}
+
 						<div className="step_text" id="height">
 							<div className="wl_vertical">
 								<div className="wl_align">
-									<h2 className="subtitle">微业贷</h2>
-									<h3 className="subtitleBom">微众银行为广大中小微企业提供的</h3>
+									<h2 className="subtitle">{this.state.bot}</h2>
+									<h3 className="subtitleBom">{this.state.bot1}</h3>
 									<div className="subtitBom">
-										线上流动资金贷款服务！
+										{this.state.bot2}
 									</div>
 									<p className="wl_details detOrange wl_margin">
-										<a href="#">了解详情</a>
+										<a href="#">{this.state.bot3}</a>
 									</p>
 									<p className="wl_fontB">
-									*目前仅限广东地区的受邀客户参与体验</p>
+									{this.state.bot4}</p>
 								</div>
 							</div>
 						</div>
 						<div className="step_text">
 							<div className="wl_vertical">
 								<div className="wl_align">
-									<h2 className="subtitle">微车贷</h2>
-									<h3 className="subtitleBom">微众银行联手优信二手车推出买车贷款</h3>
+									<h2 className="subtitle">{this.state.bot5}</h2>
+									<h3 className="subtitleBom">{this.state.bot6}</h3>
 									<div className="subtitBom">
-										产品首付一半，即刻拥有爱车！
+										{this.state.bot7}
 									</div>
 									<p className="wl_details detOrange wl_margin">
-										<a href="./Weiche">了解详情</a>
+										<a href="./Weiche">{this.state.bot8}</a>
 									</p>
 								</div>
 							</div>
@@ -232,10 +284,9 @@ class Home extends Component {
 				<RightIcon />				
     		</div>
     		<Footer />
-	     	
 	    </div>
-
-    );
+	   
+    )
   }
 }
 

@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
 import { Carousel } from 'antd';
 import '.././App.css';
-import '../css/Weiche.css';
+import '../css/Bank.css';
 import $ from 'jquery';
 import Footer from './Footer';
 
 import phone from '../imgs/6-02546ad237.jpg';
 import pic from '../imgs/pic1.png';
-// import img2 from '../imgs/45.png'
+import img1 from '../imgs/1.jpg';
+import img2 from '../imgs/2.jpg';
+import img3 from '../imgs/3.jpg';
+import img4 from '../imgs/4.jpg';
 
 
-class Weiche extends Component {
+
+class Bank extends Component {
     constructor(){
         super()
         this.state={
@@ -20,7 +24,7 @@ class Weiche extends Component {
     componentDidMount(){
         $.ajax({
             type:"get",
-            url:"http://localhost:8005/Finance/weiche",
+            url:"http://localhost:8005/Finance/bank",
             async:true,
             contentType:false,
             processData:false,
@@ -30,50 +34,37 @@ class Weiche extends Component {
                       h1:data[0].h1,
                       p1:data[0].p1,
                       p2:data[0].p2,
+                      wei:data[0].ma,
                       tit:data[0].tit,
                       left:data[0].left,
                       more:data[0].more,
                       list:data
-
                   })  
             }.bind(this)                  
-        })
-    /*var header=document.getElementById('header');           
-    var headerS=document.getElementById('headerS');
-    var scrollTC=document.getElementById('scrollTC');
-    var t = scrollTC.offsetTop;
-
-        window.addEventListener('scroll',function(){
-             var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
-             if(scrollTop>t){
-                headerS.style.display='block';
-                header.style.display='none';
-             }else{
-                headerS.style.display='none';
-                header.style.display='block';
-             }
-        })*/
+        })    
   }
   render() {
     return (
 	    <div className="EnterprisePage">
-            {/*微车贷*/}
+            {/*微众银行App*/}
             <div className="enterTopW">
                 <div className="wrap">
                     <div className="Weiban">
-                        <div className="Weiphone">                           
-                            <div className="Weipage">
-                                <img src={phone} alt="phone" title="phone"/>
-                                <span className="num4">4000</span>
-                            </div>
+                        <div className="WeiLunB"> 
+                              <Carousel autoplay>                          
+                                    <div className="four"><img src={img1} className="imgs" /></div>
+                                    <div className="four"><img src={img2} className="imgs" /></div>
+                                    <div className="four"><img src={img3} className="imgs" /></div>
+                                    <div className="four"><img src={img4} className="imgs" /></div>                   
+                              </Carousel>
                         </div>
                     </div>
                     <div className="WeiFont">
-                        <h2>{this.state.h1}</h2>
+                        <h2 className="bankApp">{this.state.h1}</h2>
                         <p>{this.state.p1}</p>
+                        <p className="weiMa"><img src={this.state.wei} /></p>
                         <p>{this.state.p2}</p>
-                    </div>
-                    
+                    </div>                   
                 </div>
             </div>
             <div className="spacer"></div> 
@@ -96,9 +87,7 @@ class Weiche extends Component {
                                             <img src={val.Img}/>
                                         </div>
                                         <h2>{val.h2}</h2>
-                                        <p>{val.p3}</p>
-                                        <p>{val.p4}</p>
-                                        <p>{val.p5}</p>
+                                        <p><img src={val.font} /></p>
                                     </li>
                                 )
                            })}
@@ -120,4 +109,4 @@ class Weiche extends Component {
     );
   }
 }
-export default Weiche;
+export default Bank;

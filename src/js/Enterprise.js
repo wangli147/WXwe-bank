@@ -9,7 +9,64 @@ import img from '../imgs/11-.jpg';
 import pic from '../imgs/pic1.png'
 
 class Enterprise extends Component {
+	constructor(){
+	    super()
+	    this.state={
+	      con:[],
+	      list:[]	 
+	    }
+	 }
   componentDidMount(){
+  	$.ajax({
+        type:"get",
+        url:"http://localhost:8005/Enterprise/enter",
+        async:true,
+        contentType:false,
+        processData:false,
+        success:function(e){
+          this.setState({
+            con1:e[0].h1,
+            con2:e[0].p1,
+            con3:e[0].p2,
+            con4:e[0].btn,
+            con5:e[0].bot         
+          })  
+        }.bind(this)      
+         
+      })
+  	$.ajax({
+        type:"get",
+        url:"http://localhost:8005/Enterprise/enterCenter",
+        async:true,
+        contentType:false,
+        processData:false,
+        success:function(data){
+          this.setState({
+             con:data      
+          })  
+        }.bind(this)      
+         
+      })
+
+  	$.ajax({
+        type:"get",
+        url:"http://localhost:8005/Enterprise/enterBoth",
+        async:true,
+        contentType:false,
+        processData:false,
+        success:function(res){
+
+	    	this.setState({
+	         	list:res,
+	         	tit:res[0].tit,
+		         btn:res[0].btn,
+		         bot:res[0].bot,
+		         left:res[0].left,
+		         more:res[0].more
+	         })
+        }.bind(this)      
+         
+      })
   	var header=document.getElementById('header');			
 	var headerS=document.getElementById('headerS');
 	var scroll=document.getElementById('scroll');
@@ -42,61 +99,50 @@ class Enterprise extends Component {
 		    			</div>
 		    		</div>
 		    		<div className="wl_messFont">
-		    			<div className="wl_text">
-		    				<h1 className="a-fadeinR">微业贷</h1>
-		    				<p className="font_two">微众银行为广大中小微企业提供的</p>
-		    				<p className="move">线上流动资金贷款服务！</p>
-		    				<a href="#" className="apply">立即申请</a>
-		    			</div>
+		    				<div className="wl_text">
+			    				<h1 className="a-fadeinR">{this.state.con1}</h1>
+			    				<p className="font_two">{this.state.con2}</p>
+			    				<p className="move">{this.state.con3}</p>
+			    				<a href="#" className="apply">{this.state.con4}</a>
+			    				<p className="wl_fontB">
+									{this.state.con5}</p>
+			    			</div>
 		    		</div>
 	    		</div>
 	    	</div>
 	    	<div className="spacer"></div>
 	    	<div className="enterBtn" id="scroll">
 	    		<div className="wrap">
-	    			<h2 className="hd">微业贷</h2>
+	    			<h2 className="hd">{this.state.tit}</h2>
 	    			<ul className="wl_list">
-	    				<li>微业贷是微众银行为广大中小微企业提供的线上流动资金贷款服务，该产品为结合大数据</li>
-	    				<li>分析及互联网技术的一款金融创新产品。客户从申请至提款全部在线完成，无需抵质押，</li>
-	    				<li>额度立等可见，资金分钟到账，按日计息，随借随还。微业贷将以科技金融为中小微企业</li>
-	    				<li>提供高效便捷的融资服务。</li>
+	    				{this.state.list.map(function(e,i){
+	    					return (
+	    						<li key={i}>{e.p}</li>
+	    					)
+	    				})}
+	    				
+	    				
 	    			</ul>
 	    			<div className="ft">
 	    				<ul className="wl_con clear">
-		    				<li>
-		    					<div className="con-wrap">
-		    						<img src={pic}/>
-		    					</div>
-		    					<h2>智慧贷款</h2>
-		    					<p>大数据定额，最高300万</p>
-		    				</li>
-		    				<li>
-		    					<div className="con-wrap">
-		    						<img src={pic}/>
-		    					</div>
-		    					<h2>智慧贷款</h2>
-		    					<p>大数据定额，最高300万</p>
-		    				</li>
-		    				<li>
-		    					<div className="con-wrap">
-		    						<img src={pic}/>
-		    					</div>
-		    					<h2>智慧贷款</h2>
-		    					<p>大数据定额，最高300万</p>
-		    				</li>
-		    				<li>
-		    					<div className="con-wrap">
-		    						<img src={pic}/>
-		    					</div>
-		    					<h2>智慧贷款</h2>
-		    					<p>大数据定额，最高300万</p>
-		    				</li>
+		    				{this.state.con.map(function(e,i){
+		    					return (
+		    						<li>
+				    					<div className="con-wrap">
+				    						<img src={e.img}/>
+				    					</div>
+				    					<h2>{e.h2}</h2>
+				    					<p>{e.p}</p>
+				    				</li>
+		    					)
+		    				})}
+		    				
 		    			</ul>
 		    			<p className="wl_for">
-		    				<a href="#">马上申请</a>
+		    				<a href="#">{this.state.btn}</a>
 		    			</p>
 		    			<p className="adress">
-		    				*目前仅限广东地区的受邀客户参与体验
+		    				{this.state.bot}
 		    			</p>
 	    			</div>
 	    		</div>
@@ -104,8 +150,8 @@ class Enterprise extends Component {
 	    	<div className="grayBg">
     			<div className="wrap">
     				<p className="fontSize">
-    					<a href="#" className="left why">微业贷如何申请？</a>
-    					<a href="#" className="right matter">了解更多问题</a>
+    					<a href="#" className="left why">{this.state.left}</a>
+    					<a href="#" className="right matter">{this.state.more}</a>
     				</p>
     			</div>
     		</div>

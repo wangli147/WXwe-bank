@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
 import { Carousel } from 'antd';
 import '.././App.css';
+import $ from 'jquery';
 import '../css/rightIcon.css';
 import img1 from '../imgs/app.png'
 import wei1 from '../imgs/wei1.png';
 import wei2 from '../imgs/wei2.png'
 class RightIcon extends Component {
+  componentDidMount(){
+    $('.top').click(function(){
+        (document.body.scrollTop=0)||(document.documentElement.scrollTop=0)
+    })
+  }
   render() {
     return (
 	    <div>
@@ -33,8 +39,8 @@ class RightIcon extends Component {
     				</div>
     			</li>
     			<li className="top">
-    				<a href="#" title="关注微信号">
-    					&lt;
+    				<a href="#">
+    					<span>&lt;</span>
     				</a>
     			</li>
     		</ul>

@@ -25,23 +25,51 @@ class App extends Component {
     }
   }
   componentDidMount(){
-    $.ajax({
+
+      $.ajax({
         type:"post",
-        url:"http://localhost:8005/home/nav",
+        url:"http://localhost:8005/app/nav",
+        async:true,
+        contentType:false,
+        processData:false,
+        success:function(con){
+          this.setState({
+            nav:con
+          })  
+        }.bind(this)      
+         
+      })
+
+    /*$.ajax({
+        type:"get",
+        url:"http://localhost:8005/app/logo",
         async:true,
         contentType:false,
         processData:false,
         success:function(e){
           this.setState({
             nav:e
-          })        
-          console.log(e)
-            }
-      });
+          })  
+        }.bind(this)      
+         
+      })*/
   	$(function(){
+      //点击nav和logo，top值为0
+      $('.wl_nav li:first').addClass('active');
   		$('.wl_nav li').click(function(){
+        (document.body.scrollTop=0)||(document.documentElement.scrollTop=0)
   			$(this).addClass('active').siblings().removeClass('active');
   		})
+      $('#nav_color li:first').css('color','#295ea8');
+      $('#nav_color li').click(function(){
+        $(this).css('color','#295ea8').siblings().css('color','');
+      })
+
+      $('.wl_logo').click(function(){
+        (document.body.scrollTop=0)||(document.documentElement.scrollTop=0)
+      })
+
+
   	})
   }
   render() {
@@ -53,17 +81,11 @@ class App extends Component {
                 <div className="wl_merge clear">
                     <Link to="/"  className="wl_logo left"><img src={logo} alt="logo"/></Link> 
                      <ul className="right wl_nav">
-                     {this.state.nav.map(function(e,i){
-                        return(
-                            <div>
-                                <li className="active"><Link to="/">首页</Link></li>
-                                <li><Link to="/Enterprise">企业金融</Link></li>
-                                <li><Link to="/Finance">个人金融</Link></li>
-                                <li><Link to="/AboutMe">关于我们</Link></li>
-                                <li><Link to="/News">公告新闻</Link></li>
-                            </div>
-                        )
-                     })}
+                         {this.state.nav.map(function(con,i){
+                            return(
+                                <li><Link key={i} to={`${con.to}`}>{con.nav}</Link></li>
+                            )
+                         })}
                         
                      </ul>          
                 </div>  
@@ -71,12 +93,12 @@ class App extends Component {
              <div className="wl_header clear" id="headerS">
                 <div className="wl_merge clear">
                     <Link to="/"  className="wl_logo left"><img src={logos} alt="logos"/></Link> 
-                     <ul className="right wl_nav">
-                        <li className="active"><Link to="/">首页</Link></li>
-                        <li><Link to="/Enterprise">企业金融</Link></li>
-                         <li><Link to="/Finance">个人金融</Link></li>
-                        <li><Link to="/AboutMe">关于我们</Link></li>
-                        <li><Link to="/News">公告新闻</Link></li>
+                     <ul className="right wl_nav" id="nav_color">
+                        {this.state.nav.map(function(con,i){
+                            return(
+                                <li><Link key={i} to={`${con.to}`}>{con.nav}</Link></li>
+                             )
+                         })}
                      </ul>          
                 </div>  
             </div>
