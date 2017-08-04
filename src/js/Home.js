@@ -72,17 +72,17 @@ class Home extends Component {
 		        contentType:false,
 		        processData:false,
 		        success:function(font){
-		        
+		        	// console.log(font)
 		          this.setState({
-			           bot:font[0].h1,
-			           bot1:font[0].p1,
-			           bot2:font[0].p2,
-			           bot3:font[0].btn,
-			           bot4:font[0].bot,
-			           bot5:font[1].h1,
-			           bot6:font[1].p1,
-			           bot7:font[1].p2,
-			           bot8:font[1].btn          
+		           bot:font[0].h1,
+		           bot1:font[0].p1,
+		           bot2:font[0].p2,
+		           bot3:font[0].btn,
+		           bot4:font[0].bot,
+		           bot5:font[1].h1,
+		           bot6:font[1].p1,
+		           bot7:font[1].p2,
+		           bot8:font[1].btn          
 		          })  
 		        }.bind(this)      
 		         
@@ -231,7 +231,8 @@ class Home extends Component {
 												</div>
 											</div>
 											<p className="wl_details">
-												<Link  to={`${e.to}`}>{e.btn}</Link>										
+												<Link  to={`${e.to}`}>{e.btn}</Link>
+												{/*<a href="Finance"></a>*/	}											
 											</p>
 										</div>
 									</div>

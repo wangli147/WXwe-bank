@@ -12,6 +12,8 @@ import Bank from './js/Bank';
 import Weiche from './js/Weiche'
 
 
+import logo from './imgs/logo.png';
+import logos from './imgs/logo2.png';
 
 import {
   BrowserRouter as Router,
@@ -42,7 +44,7 @@ class App extends Component {
          
       })
 
-    $.ajax({
+    /*$.ajax({
         type:"get",
         url:"http://localhost:8005/app/logo",
         async:true,
@@ -50,12 +52,11 @@ class App extends Component {
         processData:false,
         success:function(e){
           this.setState({
-            logo:e[0].logo,
-            logo2:e[1].logo
+            nav:e
           })  
         }.bind(this)      
          
-      })
+      })*/
   	$(function(){
       //点击nav和logo，top值为0
       $('.wl_nav li:first').addClass('active');
@@ -85,7 +86,7 @@ class App extends Component {
   	    <div className="wl_fixed">
             <div className="wl_header clear" id="header">
                 <div className="wl_merge clear">
-                    <Link to="/"  className="wl_logo left"><img src={this.state.logo} alt="logo"/></Link> 
+                    <Link to="/"  className="wl_logo left"><img src={logo} alt="logo"/></Link> 
                      <ul className="right wl_nav">
                          {this.state.nav.map(function(con,i){
                             return(
@@ -98,7 +99,7 @@ class App extends Component {
             </div>
              <div className="wl_header clear" id="headerS">
                 <div className="wl_merge clear">
-                    <Link to="/"  className="wl_logo left"><img src={this.state.logo2} alt="logos"/></Link> 
+                    <Link to="/"  className="wl_logo left"><img src={logos} alt="logos"/></Link> 
                      <ul className="right wl_nav" id="nav_color">
                         {this.state.nav.map(function(con,i){
                             return(
