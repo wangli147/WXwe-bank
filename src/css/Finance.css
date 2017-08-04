@@ -28,7 +28,7 @@ a{
   position:absolute;
   left:0;
   top:0;
-  background:url(../imgs/grjr.jpg) no-repeat 50% 0;
+  background:url(http://localhost:8005/images/1501816157120.jpg) no-repeat 50% 0;
   background-size: cover;
   animation: 2s scaleIn cubic-bezier(.215,.61,.355,1) 1;
   transition: all .5s;
